@@ -1,0 +1,30 @@
+﻿@using eBookStore.Models
+@model List<Role>
+
+<h1>List Roles</h1>
+<a asp-action="Add">Add Role</a>
+
+<table class="table table-bordered mt-3">
+    <thead class="thead-light">
+        <tr>
+            <th>Role ID</th>
+            <th>Role Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.RoleId">@item.RoleId</a>
+                </td>
+                <td>@item.RoleDesc</td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.RoleId"
+                   onclick="return confirm('Are you sure you want to delete this role?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

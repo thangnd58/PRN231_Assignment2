@@ -1,0 +1,8 @@
+﻿@model Role
+<form asp-action="Update" asp-controller="Role" method="post">
+	RoleId: <input type="text" asp-for="RoleId" readonly />
+	<br><br>
+	Role Description: <input type="text" asp-for="RoleDesc" />
+	<br><br>
+	<input type="submit" value="Update" />
+</form>
