@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace eBookStore.Models
 {
@@ -17,7 +18,9 @@ namespace eBookStore.Models
         public string? State { get; set; }
         public string? Country { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Book> Books { get; set; }
+        [JsonIgnore]
         public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using BookStoreAPI.BLL;
 using BookStoreAPI.DTO;
 using BookStoreAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace BookStoreAPI.PL
 {
@@ -20,6 +21,7 @@ namespace BookStoreAPI.PL
         }
 
         [HttpGet]
+        [EnableQuery]
         public IActionResult Get()
         {
             try

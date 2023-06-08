@@ -4,6 +4,7 @@ using BookStoreAPI.DTO;
 using BookStoreAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace BookStoreAPI.PL
 {
@@ -21,6 +22,7 @@ namespace BookStoreAPI.PL
         }
 
         [HttpGet]
+        [EnableQuery]
         public IActionResult Get()
         {
             try

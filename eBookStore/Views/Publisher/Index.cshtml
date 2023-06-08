@@ -1,0 +1,130 @@
+﻿@using eBookStore.Models
+@model Publisher
+
+<h1>Enter publisher information</h1>
+<form asp-action="Add" asp-controller="Publisher" method="post" id="form-add">
+    Publisher Name: <input type="text" asp-for="PublisherName" />
+    City: <input type="text" asp-for="City" />
+    <input type="submit" value="Save" />
+    <input type="button" value="Clear" onclick="clearForm()" />
+</form>
+
+<h1>Publishers</h1>
+<table class="table table-bordered mt-3">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                PublisherId
+                <br />
+                <input type="text" placeholder="Search" onchange="search(this.value, 'PubId')" />
+            </th>
+            <th>
+                PublisherName
+                <br />
+                <input type="text" placeholder="Search" onchange="search(this.value, 'PublisherName')" />
+            </th>
+            <th>
+                City
+                <br />
+                <input type="text" placeholder="Search" onchange="search(this.value, 'City')" />
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="publisher-list">
+        @foreach (var item in ViewBag.ListPublisher)
+        {
+            <tr>
+                <td>
+                    @item.PubId
+                </td>
+                <td>@item.PublisherName</td>
+                <td>@item.City</td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.PubId">Edit</a> | <a asp-action="Delete" asp-route-id="@item.PubId"
+                                                                                    onclick="return confirm('Are you sure you want to delete this publisher?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    form {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #008CBA;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="button"] {
+        background-color: #008CBA;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #006E9D;
+    }
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function clearForm() {
+        document.getElementById("form-add").reset();
+    }
+
+    function search(txt, type) {
+        const publisherList = $("#publisher-list");
+        var datalink = `contains(${type},'${txt}')`;
+        if(type == 'PubId'){
+            datalink = `PubId eq ${txt}`;
+        }
+        $.ajax({
+            url: `http://localhost:5169/api/Publisher`,
+            type: "GET",
+            dataType: "json",
+            data: { $filter: datalink },
+            success: function (data) {
+                // Clear the previous results
+                publisherList.empty();
+
+                // Iterate over the data and create a new row for each publisher
+                $.each(data, function (index, publisher) {
+                    const row = $("<tr/>");
+                    row.append($("<td/>").text(publisher.pubId));
+                    row.append($("<td/>").text(publisher.publisherName));
+                    row.append($("<td/>").text(publisher.city));
+                    row.append($("<td/>").html(`<a href="/Publisher/Update/${publisher.pubId}">Edit</a> | <a href="/Publisher/Delete/${publisher.pubId}" onclick="return confirm('Are you sure you want to delete this publisher?')">Delete</a>`));
+                    publisherList.append(row);
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error while fetching publishers:", textStatus, errorThrown);
+            }
+        });
+    }
+</script>

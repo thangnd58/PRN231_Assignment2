@@ -1,0 +1,47 @@
+﻿@model Author
+<h1>Update author</h1>
+<form asp-action="Update" asp-controller="Author" method="post">
+	AuthorId: <input type="text" asp-for="AuthorId" readonly />
+	FirstName: <input type="text" asp-for="FirstName" />
+	Lastname: <input type="text" asp-for="LastName" />
+	Phone: <input type="text" asp-for="Phone" />
+	Address: <input type="text" asp-for="Address" />
+	City: <input type="text" asp-for="City" />
+	State: <input type="text" asp-for="State" />
+	Zip: <input type="text" asp-for="Zip" />
+	Email Address: <input type="text" asp-for="EmailAddress" />
+	<input type="submit" value="Update" />
+</form>
+
+<style>
+	form {
+		margin: 20px;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	}
+
+	input[type="text"] {
+		padding: 8px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	input[type="submit"] {
+		background-color: #008CBA;
+		color: white;
+		padding: 12px 20px;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 16px;
+	}
+
+		input[type="submit"]:hover {
+			background-color: #006E9D;
+		}
+
+</style>

@@ -1,0 +1,70 @@
+﻿@model Book
+<h1>Update book</h1>
+<form asp-action="Update" asp-controller="Book" method="post">
+	BookId: <input type="text" asp-for="BookId" readonly />
+	Title: <input type="text" asp-for="Title" />
+	Type: <input type="text" asp-for="Type" />
+	PubId: <select asp-for="PubId">
+		@foreach (var i in ViewBag.ListPublisher)
+		{
+			<option value="@i.PubId">@i.PublisherName</option>
+		}
+	</select>
+	Price: <input type="text" asp-for="Price" />
+	Royalty: <input type="text" asp-for="Royalty" />
+	YTD Sales: <input type="text" asp-for="YtdSales" />
+	Notes: <input type="text" asp-for="Notes" />
+	PublishedDate: <input type="date" asp-for="PublishedDate" />
+	<input type="submit" value="Update" />
+</form>
+
+<style>
+	form {
+		margin: 20px;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	}
+
+	input[type="text"] {
+		padding: 8px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	input[type="date"] {
+		padding: 8px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	select {
+		padding: 8px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	input[type="submit"] {
+		background-color: #008CBA;
+		color: white;
+		padding: 12px 20px;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 16px;
+	}
+
+		input[type="submit"]:hover {
+			background-color: #006E9D;
+		}
+
+</style>

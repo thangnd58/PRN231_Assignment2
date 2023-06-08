@@ -1,0 +1,43 @@
+﻿@model Publisher
+<h1>Update publisher</h1>
+<form asp-action="Update" asp-controller="Publisher" method="post">
+	PubId: <input type="text" asp-for="PubId" readonly />
+	PublisherName: <input type="text" asp-for="PublisherName" />
+	City: <input type="text" asp-for="City" />
+	State: <input type="text" asp-for="State" />
+	Country: <input type="text" asp-for="Country" />
+	<input type="submit" value="Update" />
+</form>
+
+<style>
+	form {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #008CBA;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  background-color: #006E9D;
+}
+
+</style>
