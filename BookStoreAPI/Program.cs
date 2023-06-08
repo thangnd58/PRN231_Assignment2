@@ -51,11 +51,11 @@ namespace BookStoreAPI
         private static IEdmModel GetEdmModel()
         {
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            var entitySet1 = builder.EntitySet<Publisher>("Publisher");
+            var entitySet1 = builder.EntitySet<Publisher>("Publishers");
             entitySet1.EntityType.HasKey(entity => entity.PubId);
-            var entitySet2 = builder.EntitySet<Author>("Author");
+            var entitySet2 = builder.EntitySet<Author>("Authors");
             entitySet2.EntityType.HasKey(entity => entity.AuthorId);
-            var entitySet3 = builder.EntitySet<Book>("Book");
+            var entitySet3 = builder.EntitySet<Book>("Books");
             entitySet3.EntityType.HasKey(entity => entity.BookId);
             return builder.GetEdmModel();
         }
