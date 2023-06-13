@@ -108,22 +108,42 @@ namespace eBookStore.Controllers
             User u = VerifyUser();
             if (u == null || u.RoleId == null || u.RoleId != 1)
             {
-                return RedirectToAction("Index");
-            }
-            using (HttpClient client = new HttpClient())
+                ViewBag.Message = "You are not permission";
+                return View();
+            } 
+            if(author.AuthorId != 0)
             {
-                using (HttpResponseMessage res = await client.PostAsJsonAsync(apiLink, author))
-                {
-                    if (res.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        return BadRequest();
-                    };
-                }
-            }
+				using (HttpClient client = new HttpClient())
+				{
+					using (HttpResponseMessage res = await client.PutAsJsonAsync(apiLink + "/" + author.AuthorId, author))
+					{
+						if (res.IsSuccessStatusCode)
+						{
+							return RedirectToAction("Index");
+						}
+						else
+						{
+							return BadRequest();
+						};
+					}
+				}
+			} else
+            {
+				using (HttpClient client = new HttpClient())
+				{
+					using (HttpResponseMessage res = await client.PostAsJsonAsync(apiLink, author))
+					{
+						if (res.IsSuccessStatusCode)
+						{
+							return RedirectToAction("Index");
+						}
+						else
+						{
+							return BadRequest();
+						};
+					}
+				}
+			}
         }
     }
 }

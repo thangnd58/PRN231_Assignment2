@@ -1,11 +1,23 @@
-﻿@using eBookStore.Models
+﻿@using Newtonsoft.Json;
+@using eBookStore.Models
 @model Publisher
-
+@{
+    User u = null;
+    string json = Context.Session.GetString("user");
+    if (json != null) u = JsonConvert.DeserializeObject<User>(json);
+}
 <h1>Enter publisher information</h1>
 <form asp-action="Add" asp-controller="Publisher" method="post" id="form-add">
-    Publisher Name: <input type="text" asp-for="PublisherName" />
-    City: <input type="text" asp-for="City" />
-    <input type="submit" value="Save" />
+    Publisher Name: <input type="text" asp-for="PublisherName" required/>
+    City: <input type="text" asp-for="City" required/>
+    @if (u == null)
+    {
+        <input type="button" value="Save" onclick="myFunction()" />
+    }
+    else
+    {
+        <input type="submit" value="Save" />
+    }
     <input type="button" value="Clear" onclick="clearForm()" />
 </form>
 

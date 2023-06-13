@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoCallApiOnMobileApp.MainPage">
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Author Management" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <StackLayout Orientation="Horizontal" Padding="10">
+            <Entry x:Name="IdEntry" Placeholder="Id" IsVisible="false"/>
+            <Entry x:Name="LastNameEntry" Placeholder="Last Name" WidthRequest="100"/>
+            <Entry x:Name="EmailEntry" Placeholder="Email Address" WidthRequest="200"/>
+            
+        </StackLayout>
+        <Button Text="Save" Clicked="Button_Clicked"/>
+        <Button Text="Clear" Clicked="Button_Clicked_1"/>
+        <StackLayout Orientation="Horizontal" Padding="10">
+            <Label Text="Id" WidthRequest="50"/>
+            <Label Text="|" TextColor="#666" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" WidthRequest="10"/>
+            <Label Text="Name" WidthRequest="70"/>
+            <Label Text="|" TextColor="#666" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" WidthRequest="10"/>
+            <Label Text="Email" WidthRequest="200"/>
+        </StackLayout>
+        <ListView x:Name="ItemListView" ItemsSource="{Binding Author}" SelectedItem="{Binding SelectedAuthor}" ItemSelected="ItemListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10" >
+                            <Label Text="{Binding AuthorId}" WidthRequest="50"/>
+                            <Label Text="|" TextColor="#666" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" WidthRequest="10"/>
+                            <Label Text="{Binding LastName}" WidthRequest="70"/>
+                            <Label Text="|" TextColor="#666" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" WidthRequest="10"/>
+                            <Label Text="{Binding EmailAddress}" WidthRequest="200"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
