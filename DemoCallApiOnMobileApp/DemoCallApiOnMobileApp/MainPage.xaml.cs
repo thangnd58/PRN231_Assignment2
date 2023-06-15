@@ -23,6 +23,10 @@ namespace DemoCallApiOnMobileApp
 			InitializeComponent();
 			LoadAuthors();
 		}
+
+		/// <summary>
+		/// Load author to ListView
+		/// </summary>
 		protected async void LoadAuthors()
 		{
 			List<Author> authors = new List<Author>();
@@ -40,7 +44,11 @@ namespace DemoCallApiOnMobileApp
 			ItemListView.ItemsSource = authors;
 		}
 
-
+		/// <summary>
+		/// Button add new author or update author
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		protected async void Button_Clicked(object sender, EventArgs e)
 		{
 			// Retrieve values from the input fields
@@ -63,6 +71,8 @@ namespace DemoCallApiOnMobileApp
 					{
 						if (res.IsSuccessStatusCode)
 						{
+							string notificationText = "Update author successfully";
+							Toast.MakeText(Android.App.Application.Context, notificationText, ToastLength.Long).Show();
 							LoadAuthors();
 							LastNameEntry.Text = "";
 							EmailEntry.Text = "";
@@ -85,6 +95,8 @@ namespace DemoCallApiOnMobileApp
 					{
 						if (res.IsSuccessStatusCode)
 						{
+							string notificationText = "Add new author successfully";
+							Toast.MakeText(Android.App.Application.Context, notificationText, ToastLength.Long).Show();
 							LoadAuthors();
 							LastNameEntry.Text = "";
 							EmailEntry.Text = "";
@@ -114,11 +126,47 @@ namespace DemoCallApiOnMobileApp
 			}
 		}
 
+		/// <summary>
+		/// Button clear text field
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Button_Clicked_1(object sender, EventArgs e)
 		{
 			IdEntry.Text = null;
 			LastNameEntry.Text = null;
 			EmailEntry.Text = null;
+		}
+
+		/// <summary>
+		/// Button delete an author
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private async void Button_Clicked_2(object sender, EventArgs e)
+		{
+			string id = IdEntry.Text;
+			if(id != null)
+			{
+				using (HttpClient client = new HttpClient())
+				{
+					using (HttpResponseMessage res = await client.DeleteAsync(UrlApi + "/" + id))
+					{
+						if (res.IsSuccessStatusCode)
+						{
+							string notificationText = "Delete author id: " + id  + " successfully";
+							Toast.MakeText(Android.App.Application.Context, notificationText, ToastLength.Long).Show();
+							LoadAuthors();
+							Button_Clicked_1(sender, e);
+						}
+						else
+						{
+							string notificationText = "DELETE request failed";
+							Toast.MakeText(Android.App.Application.Context, notificationText, ToastLength.Long).Show();
+						};
+					}
+				}
+			}
 		}
 	}
 }

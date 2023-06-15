@@ -14,6 +14,7 @@
         </StackLayout>
         <Button Text="Save" Clicked="Button_Clicked"/>
         <Button Text="Clear" Clicked="Button_Clicked_1"/>
+        <Button Text="Delete" Clicked="Button_Clicked_2"/>
         <StackLayout Orientation="Horizontal" Padding="10">
             <Label Text="Id" WidthRequest="50"/>
             <Label Text="|" TextColor="#666" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" WidthRequest="10"/>

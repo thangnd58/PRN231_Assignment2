@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCallApiOnMobileApp.Andr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCallApiOnMobileApp.iOS", "DemoCallApiOnMobileApp\DemoCallApiOnMobileApp.iOS\DemoCallApiOnMobileApp.iOS.csproj", "{892F8529-3597-46DC-B28A-734F6A06B8DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCallApiOnMobileApp", "DemoCallApiOnMobileApp\DemoCallApiOnMobileApp\DemoCallApiOnMobileApp.csproj", "{D718EDC7-9A1F-4B87-9DDD-3F1D81D5AABD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoCallApiOnMobileApp", "DemoCallApiOnMobileApp\DemoCallApiOnMobileApp\DemoCallApiOnMobileApp.csproj", "{D718EDC7-9A1F-4B87-9DDD-3F1D81D5AABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
