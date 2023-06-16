@@ -16,7 +16,7 @@ namespace DemoCallApiOnMobileApp
 {
 	public partial class MainPage : ContentPage
 	{
-		private const string UrlApi = "http://192.168.1.219:5169/api/Author";
+		private const string UrlApi = "http://192.168.1.128:5169/api/Author";
 
 		public MainPage()
 		{
